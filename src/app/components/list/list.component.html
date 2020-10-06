@@ -1,0 +1,25 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Enrollee ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Status</th>
+      <th scope="col">Date of Birth</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let enrollee of enrollees" [ngClass]="{'inactive': !enrollee.active}">
+        <td>{{enrollee.id}}</td>
+        <td *ngIf="!isEditable(enrollee)">{{enrollee.name}}</td>
+        <td *ngIf="isEditable(enrollee)"><input [(ngModel)]="currentEnrollee.name" value="{{currentEnrollee.name}}" type="" /></td>
+        <td *ngIf="!isEditable(enrollee)"> {{(enrollee.active) ? 'Active' : 'In Active' }}</td>
+        <td *ngIf="isEditable(enrollee)"><input [(ngModel)]="currentEnrollee.active" [checked]="currentEnrollee.active" type="checkbox" /></td>
+        <td>{{enrollee.dateOfBirth}}</td>
+        <td *ngIf="!isEditable(enrollee)"><button type="button" class="btn btn-link" (click)="allowEdit(enrollee)">Edit</button></td>
+        <td *ngIf="isEditable(enrollee)"><button type="button" class="btn btn-link" (click)="cancel()">Cancel</button>
+          <button type="button" class="btn btn-link" (click)="update()">Update</button>
+        </td>
+      </tr>    
+    </tbody>
+  </table>

@@ -1,0 +1,18 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Active</th>
+        <th scope="col">Date of Birth</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let enrollee of enrollees" [ngClass]="{'active': enrollee.active}">
+        <td>{{enrollee.id}}</td>
+        <td>{{enrollee.name}}</td>
+        <td> {{(enrollee.active) ? 'Yes' : 'No' }}</td>
+        <td>{{enrollee.dateOfBirth}}</td>
+      </tr>    
+    </tbody>
+  </table>
